@@ -17,8 +17,11 @@ namespace laboratorio_tp1
         {
             InitializeComponent();
         }
-        
-
+        /// <summary>
+        /// Hace uso del metodo Operar de la clase FormCalculadora, el resultado lo muestra a treaves del Label y guarda la operacion realizada en el listBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOperar_Click(object sender, EventArgs e)
         {
             double resultado;
@@ -29,16 +32,29 @@ namespace laboratorio_tp1
 
         }
 
+        /// <summary>
+        /// al apretar el boton pregunta si el usuario quiere cerrar la aplicacion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// usa el metodo limpiar al precionar el boton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             this.Limpiar();
         }
 
+        /// <summary>
+        /// Limpia los textBox y label de la pantalla, ademas inhabilita los botones de conversion.
+        /// </summary>
         private void Limpiar()
         {
             this.txtNumero1.Text = " ";
@@ -47,6 +63,14 @@ namespace laboratorio_tp1
             this.lblResultado.Text = " ";
         }
 
+        /// <summary>
+        /// Se hace uso del metodo Operar de la clase Calculadora para que realice una operacion matematica entre dos numeros. 
+        /// Tambien se le pasa el operador para que sepa que operacion realizar.
+        /// </summary>
+        /// <param name="numero1">Numero que se recibe mediante el txtOperando1</param>
+        /// <param name="numero2">Numero que se recibe mediante el txtOperando2</param>
+        /// <param name="operador">Operador que se recibe mediante el cmbOperador</param>
+        /// <returns>Retorna el resultado de la operacion realizada.</returns>
         private static double Operar(string numero1, string numero2, string operador)
         {
             char caracter;
@@ -61,7 +85,11 @@ namespace laboratorio_tp1
             }
             return resultado;
         }
-
+        /// <summary>
+        /// Boton que hace uso del metodo para convertir el numero recibido del label en decimal.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConvertirADecimal_Click(object sender, EventArgs e)
         {
             this.btnConvertirADecimal.Enabled = false;
@@ -69,6 +97,11 @@ namespace laboratorio_tp1
             this.btnConvertirABinario.Enabled = true;
         }
 
+        /// <summary>
+        /// Boton que hace uso del metodo para convertir el numero recibido del label en binario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConvertirABinario_click(object sender, EventArgs e)
         {
             this.btnConvertirABinario.Enabled = false;
@@ -76,6 +109,11 @@ namespace laboratorio_tp1
             this.btnConvertirADecimal.Enabled = true;
         }
 
+        /// <summary>
+        /// Evento del Form que al querer cerrar la aplicacion pregunte al usuario si realmente  quiere hacerlo. Si asi lo desea, se cierra la aplicacion.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormCalculadora_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("¿Esta seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
