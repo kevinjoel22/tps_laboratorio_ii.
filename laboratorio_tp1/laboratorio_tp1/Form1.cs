@@ -17,16 +17,7 @@ namespace laboratorio_tp1
         {
             InitializeComponent();
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btnOperar_Click(object sender, EventArgs e)
         {
@@ -34,14 +25,7 @@ namespace laboratorio_tp1
             resultado = FormCalculadora.Operar(this.txtNumero1.Text, this.txtNumero2.Text, cmbOperador.SelectedItem.ToString());
             this.lblResultado.Text =resultado.ToString();
 
-        }
-        private void btnConvertirADecimal(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnConvertirABinario(object sender, EventArgs e)
-        {
+            lstOperaciones.Items.Add($"{this.txtNumero1.Text} {cmbOperador.SelectedItem.ToString()} {this.txtNumero2.Text} = {resultado}");
 
         }
 
@@ -78,8 +62,26 @@ namespace laboratorio_tp1
             return resultado;
         }
 
+        private void btnConvertirADecimal_Click(object sender, EventArgs e)
+        {
+            this.btnConvertirADecimal.Enabled = false;
+            this.lblResultado.Text = new Operando().BinarioDecimal(this.lblResultado.Text);
+            this.btnConvertirABinario.Enabled = true;
+        }
 
+        private void btnConvertirABinario_click(object sender, EventArgs e)
+        {
+            this.btnConvertirABinario.Enabled = false;
+            this.lblResultado.Text = new Operando().DecimalBinario(this.lblResultado.Text);
+            this.btnConvertirADecimal.Enabled = true;
+        }
 
-
+        private void FormCalculadora_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Esta seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }
