@@ -17,7 +17,7 @@ namespace Entidades
         public static double Operador(Operando num1, Operando num2, char operador)
         {
             double retorno = 0;
-            double parseo;
+            
             switch (operador)
             {
                 case '+':
